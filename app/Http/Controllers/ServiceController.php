@@ -3,13 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
-    public function index() {
-        $services = Service::all();
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-        return view('service.index', compact('services'));
+    public function index() {
+        // dd(Auth::user()->role);
+
+        if(Auth::user()->role === 2) {
+            $services = Service::all();
+            $message = "Chào bạn mình ngồi đây từ sáng";
+
+            return view('services', compact('services', 'message'));
+        }
+
+        return redirect('/');
     }
 
     public function store() {

@@ -9,7 +9,7 @@
 <form action="/codegymer" method="post">
     @include('codegymer.form')
 
-    <button>Add CodeGymer</button>
+    <button class="btn btn-primary">Add CodeGymer</button>
 </form>
 
 @endsection

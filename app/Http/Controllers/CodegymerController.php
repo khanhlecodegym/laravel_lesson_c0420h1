@@ -3,28 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Codegymer;
+use App\CodegymGroup;
+use App\Http\Requests\CodeGymerRequest;
 use Illuminate\Http\Request;
 
 class CodegymerController extends Controller
 {
     public function index() {
-        $codegymers = Codegymer::all();
+        $codegymers = Codegymer::where("active", true)->paginate(2);
+
+        // dd($codegymers[0]->group->name);
 
         return view('codegymer.index', compact('codegymers'));
     }
 
     public function create() {
+        $groups = CodegymGroup::all();
 
-        return view('codegymer.create');
+        return view('codegymer.create', compact('groups'));
     }
 
-    public function store() {
+    public function store(CodeGymerRequest $request) {
         // $data = request()->validate([
         //     'name' => 'required|min:5',
         //     'email' => 'email'
         // ]);
 
-        Codegymer::create($this->validatedData());
+        Codegymer::create($request->all());
 
         return redirect('/codegymer');
     }
@@ -53,7 +58,8 @@ class CodegymerController extends Controller
     protected function validatedData() {
         return request()->validate([
             'name' => 'required|min:5',
-            'email' => 'email'
+            'email' => 'email',
+            'codegymergroup_id' => 'required'
         ]);
     }
 

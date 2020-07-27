@@ -19,7 +19,7 @@ Route::get('/', 'HelloController@index');
 // Route::get('hello', 'HelloController@hello');
 Route::view('hello', 'about');
 
-Route::get('/services', 'ServiceController@index')->middleware('auth');
+Route::get('/services', 'ServiceController@index');
 Route::post('/services', 'ServiceController@store');
 // Route::view('/services', 'services');
 
@@ -32,6 +32,10 @@ Route::post('/services', 'ServiceController@store');
 // Route::patch('/codegymer/{codegymer}', 'CodegymerController@update');
 // Route::delete('/codegymer/{codegymer}', 'CodegymerController@destroy');
 Route::resource('codegymer', 'CodegymerController');
+
+Route::get('/customers', 'CustomerController@index');
+Route::post('/customers/edit', 'CustomerController@edit')->name('customers.edit');
+
 
 Auth::routes();
 

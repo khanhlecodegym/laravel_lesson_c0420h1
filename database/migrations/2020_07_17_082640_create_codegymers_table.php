@@ -17,6 +17,8 @@ class CreateCodegymersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->boolean("active")->default(true);
+            $table->integer("codegymergroup_id");
             $table->timestamps();
         });
     }

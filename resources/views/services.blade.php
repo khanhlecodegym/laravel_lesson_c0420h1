@@ -1,16 +1,32 @@
-@extends('app')
+@extends('layouts.admin')
 
-@section('title', 'Services')
+{{-- @section('title', 'Services') --}}
 
 
 @section('content')
-    <h3>Các  dịch vụ của C4</h3>
-    <ul>
-        @forelse ($services as $item)
-        <li>{{ $item }}</li>
-        @empty
-            <h3>C4 không có gì ngoài tình củm</h3>
-        @endforelse
-
-    </ul>
+    Hello 123
 @endsection
+
+@push('toastr-login')
+  <script>
+    toastr.warning("{{$message}}")
+
+    toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "3000",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+</script>
+  @endpush
