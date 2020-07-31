@@ -29,4 +29,20 @@ class CustomerController extends Controller
         }
 
     }
+
+    public function add() {
+        try {
+            $customer = new Customer();
+            $customer->name = request('name');
+            $customer->email = request('email');
+            $customer->dob = request('dob');
+            $customer->save();
+
+            return response()->json($customer);
+
+        } catch (\Throwable $th) {
+            return response()->json("lỗi");
+        }
+
+    }
 }

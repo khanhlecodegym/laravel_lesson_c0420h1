@@ -35,6 +35,7 @@ Route::resource('codegymer', 'CodegymerController');
 
 Route::get('/customers', 'CustomerController@index');
 Route::post('/customers/edit', 'CustomerController@edit')->name('customers.edit');
+Route::post('/customers/add', 'CustomerController@add')->name('customers.add');
 
 
 Auth::routes();
